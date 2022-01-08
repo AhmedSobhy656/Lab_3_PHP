@@ -37,10 +37,17 @@
           if (!(empty($_POST["details"]))) {
             $details = $_POST['details'];
                 }
-                if (!(empty($_POST["course"]))) {
-            $course = $_POST['course'];
-                }                      
-    }
+            //     if (!(empty($_POST["course"]))) {
+            // $course = $_POST['course'];
+            //     } 
+            
+            // Check if form is submitted successfully
+	// if(isset($_POST["submit"]))
+	// {
+		// Check if any option is selected
+		
+    // }
+}
 ?>
 
    <!--****************************** HTML************************** -->
@@ -74,12 +81,12 @@
                                         <input type="radio" name = "gender" value="female"> Female <span>* <?php echo $genderErr;?> </span>
                 </div>
                 <div class="right-box">
-                    <select  name="course" style="width:70px; height: 20px;">>
-                        <option> PHP </option>
-                        <option> JS  </option>
-                        <option> MySQL  </option>
-                        <option> HTML  </option>
-                        <option> CSS  </option>
+                    <select   name = 'course[]' multiple size = 6 style="width:70px; height: 60px;" >
+                        <option value='php'>   PHP    </option>
+                        <option value='js'>    JS     </option>
+                        <option value='mysql'> MySQL  </option>
+                        <option value='html'>  HTML   </option>
+                        <option value='css'>   CSS    </option>
                    </select>
                 </div>
                 <div class="right-box"> <input type="checkbox" name = "agree"> <span>* <?php echo $agreeErr;?> </span> </div>       
@@ -105,8 +112,14 @@
    echo "<br>";
    echo "Class Details  :    $details ";   
    echo "<br>";
-   echo "Course         :    $course ";   
-   echo "<br>";
+   echo "Course         :     ";   
+
+    if(isset($_POST["course"]))
+		{
+			// Retrieving each selected option
+			foreach ($_POST['course'] as $course)
+				echo  "  $course  -  ";
+		}
  
 ?>
 
